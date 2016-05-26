@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 @class XMGContact, addViewController;
 
-@protocol addViewControllerDelegate <NSObject>
 
-@optional
-- (void)addViewDelegatecontact:(XMGContact *)contact;
-
-@end
 
 
 
@@ -22,7 +17,8 @@ typedef void(^addViewControllerBlock) (XMGContact *contact);
 
 @interface addViewController : UIViewController
 
-@property (nonatomic, weak) id<addViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) addViewControllerBlock block;
 
 
 @end

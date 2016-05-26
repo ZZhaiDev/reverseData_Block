@@ -12,7 +12,7 @@
 
 #define path [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"datas.data"]
 
-@interface TableViewController () <addViewControllerDelegate>
+@interface TableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *datas;
 @end
@@ -40,19 +40,17 @@
 }
 
 
-- (void)addViewDelegatecontact:(XMGContact *)contact
-{
-    [self.datas addObject:contact];
-    
-    [self.tableView reloadData];
-}
 
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     addViewController *vc = segue.destinationViewController;
-    vc.delegate = self;
+    
+    vc.block = ^(XMGContact *contact){
+        [self.datas addObject:contact];
+        [self.tableView reloadData];
+    };
    
     vc.title = @"addController";
 }

@@ -36,12 +36,9 @@
     
     XMGContact *c = [XMGContact contactWithName:_firstTextF.text phone:_secondTextF.text];
     
-    
-    
-    if ([self.delegate respondsToSelector:@selector(addViewDelegatecontact:)]) {
-        [self.delegate addViewDelegatecontact:c];
+    if (_block) {
+        _block(c);
     }
-//
     
     [self.navigationController popViewControllerAnimated:YES];
 }
